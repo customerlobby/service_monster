@@ -40,7 +40,7 @@ client = ServiceMonster.client
 
 ### Resources
 
-There are currently two Service Monster resources implemented in this client; Accounts and Orders.
+There are currently four Service Monster resources implemented in this client; Accounts, Orders, Jobs and Reminders.
 See the parameters section below for information about what kinds of parameters can be sent to Service Monster.
 
 Getting a list of accounts:
@@ -65,6 +65,30 @@ Getting a single order (the id parameter is the Service Monster GUID for the ord
 
 ```ruby
 client.order(id, params)
+```
+
+Getting a list of jobs:
+
+```ruby
+client.jobs(params)
+```
+
+Getting a single job (the id parameter is the Service Monster GUID for the job):
+
+```ruby
+client.job(id, params)
+```
+
+Getting a list of reminders:
+
+```ruby
+client.reminders(params)
+```
+
+Getting a single reminder (the id parameter is the Service Monster GUID for the reminder):
+
+```ruby
+client.reminder(id, params)
 ```
 
 ### Parameters
