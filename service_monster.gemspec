@@ -6,8 +6,8 @@ require 'service_monster/version'
 Gem::Specification.new do |spec|
   spec.name          = "service_monster"
   spec.version       = ServiceMonster::VERSION
-  spec.authors       = ["David Lains","Shiv Indap"]
-  spec.email         = ["dlains@customerlobby.com","sindap@customerlobby.com"]
+  spec.authors       = ["David Lains","Shiv Indap","Kevin Garrity"]
+  spec.email         = ["dlains@customerlobby.com","sindap@customerlobby.com","kevin_garrity@outlook.com"]
   spec.description   = %q{Wrapper for the ServiceMonster API}
   spec.summary       = %q{Wrapper for the ServiceMonster API}
   spec.homepage      = ""

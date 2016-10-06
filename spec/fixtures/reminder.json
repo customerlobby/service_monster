@@ -1,0 +1,15 @@
+{
+  "reminder": {
+      "row_number":1,
+      "reminderID":"84a49a56-9b71-11e4-87df-cb4dbb25dccc",
+      "accountID":"c8247e96-723e-11e3-b8c3-d9b28ac835cd",
+      "companyID":"6e7431ea-6cbb-11e3-b8c3-d9b28ac835cd",
+      "routeID":"aec21591-71c4-11e3-b8c3-d9b28ac835cd",
+      "endDateTime":"2015-12-15T08:00:00",
+      "name":"Estimate",
+      "reminderTemplateID":"aec21591-71c4-11e3-b8c3-d9b28ac835cd",
+      "siteID":"d6ee8d1a-7a0c-11e3-95c1-9a03579c48a1",
+      "timeStamp":"2015-12-15T07:30:00",
+      "userName":"Kevin Garrity"
+  }
+}
