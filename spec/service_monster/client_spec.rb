@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'webmock/rspec'
 
 RSpec.describe ServiceMonster::Client do
 
@@ -9,4 +10,17 @@ RSpec.describe ServiceMonster::Client do
     expect(connection).to eq(endpoint.to_s)
   end
 
+  # Test authorization for Kickserv.
+  # Test case record the http response in
+  # get_auth_error.yml file for offline mode.
+  # This test case call http api.
+  # Validate fields present in response.
+  it 'check authorization error' do
+    VCR.use_cassette('authorization_error') do
+      client = ServiceMonster.client(api_key: 'API_KEY')
+      expect {client.accounts {raise} }.to raise_error('Invalid credentials.')
+    end
+  end
 end
+
+

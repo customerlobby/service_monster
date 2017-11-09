@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.servicemonster.net/v1/accounts
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Authorization:
+      - Basic API_KEY
+  response:
+    status:
+      code: 401
+      message: 
+    headers:
+      access-control-allow-origin:
+      - "*"
+      cache-control:
+      - no-cache
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Wed, 08 Nov 2017 12:18:04 GMT
+      expires:
+      - "-1"
+      pragma:
+      - no-cache
+      server:
+      - Microsoft-IIS/7.5
+      x-aspnet-version:
+      - 4.0.30319
+      x-powered-by:
+      - ASP.NET
+      content-length:
+      - '1424'
+      connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"errorMessage":"There was an error during Authorization.","resourceType":"AuthenticationHandler","devRef":null,"exception":{"ClassName":"PF.REST.HttpException","Message":"HTTP
+        Error: InternalServerError","Data":null,"InnerException":null,"HelpURL":null,"StackTraceString":"   at
+        SM.REST.Web.Services.SAMAuthenticationService.GetRemotePrincipal(String userName,
+        String password, String requestedCompanyKey) in C:\\Principal Focus\\Development
+        v2\\WebServices\\SM.REST\\SM.REST.Web\\SM.REST.Web\\Services\\SAMAuthenticationService.cs:line
+        171\r\n   at SM.REST.Web.Services.SAMAuthenticationService.Login(String userName,
+        String password, String requestedCompanyKey) in C:\\Principal Focus\\Development
+        v2\\WebServices\\SM.REST\\SM.REST.Web\\SM.REST.Web\\Services\\SAMAuthenticationService.cs:line
+        79\r\n   at SM.REST.Web.HttpHandlers.AuthenticationHandler.SendAsync(HttpRequestMessage
+        request, CancellationToken cancellationToken) in C:\\Principal Focus\\Development
+        v2\\WebServices\\SM.REST\\SM.REST.Web\\SM.REST.Web\\HttpHandlers\\AuthenticationHandler.cs:line
+        42","RemoteStackTraceString":null,"RemoteStackIndex":0,"ExceptionMethod":"8\nGetRemotePrincipal\nSM.REST.Web,
+        Version=1.0.0.2, Culture=neutral, PublicKeyToken=null\nSM.REST.Web.Services.SAMAuthenticationService\nSMI.SAM.Principal
+        GetRemotePrincipal(System.String, System.String, System.String)","HResult":-2146233088,"Source":"SM.REST.Web","WatsonBuckets":null}}'
+    http_version: 
+  recorded_at: Wed, 08 Nov 2017 12:18:05 GMT
+recorded_with: VCR 3.0.3

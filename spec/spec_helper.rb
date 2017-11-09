@@ -1,5 +1,6 @@
 require 'service_monster'
 require 'webmock/rspec'
+require 'vcr'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -85,4 +86,10 @@ end
 
 def fixture(file)
   File.new(fixture_path + '/' + file)
+end
+
+VCR.configure do |config|
+  config.cassette_library_dir     = 'spec/fixtures'
+  config.hook_into                  :faraday
+  config.hook_into :webmock
 end

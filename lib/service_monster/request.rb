@@ -1,3 +1,6 @@
+require File.expand_path('../errors/connection_error', __FILE__)
+require File.expand_path('../errors/authorization_error', __FILE__)
+
 module ServiceMonster
   # Defines HTTP request methods
   module Request
@@ -15,19 +18,30 @@ module ServiceMonster
 
     # Perform an HTTP request
     def request(method, path, options)
-      response = connection.send(method) do |request|
-        case method
-        when :get
-          formatted_options = format_options(options)
-          request.url(path,formatted_options)
-        when :post, :put
-          request.headers['Content-Type'] = 'application/json'
-          request.body = options.to_json unless options.empty?
-          request.url(path)
+      begin
+        response = connection.send(method) do |request|
+          case method
+          when :get
+            formatted_options = format_options(options)
+            request.url(path,formatted_options)
+          when :post, :put
+            request.headers['Content-Type'] = 'application/json'
+            request.body = options.to_json unless options.empty?
+            request.url(path)
+          end
         end
+      rescue
+        # handle connection related failures and raise gem specific standard error
+        raise ServiceMonster::Error::ConnectionError.new, 'Connection failed.'
       end
-      
-      Response.create(response.body)
+      # check if the status code is 401
+      if response.status == 200
+        Response.create(response.body)
+      elsif response.status == 401
+        raise ServiceMonster::Error::AuthorizationError.new, 'Invalid credentials.'
+      else
+        raise StandardError.new, "Failed to fetch data from ServiceMonster, status code: #{response.status}"
+      end
     end
     
     # Format the Options before you send them off to ServiceMonster
