@@ -2,6 +2,7 @@ require 'service_monster'
 require 'webmock/rspec'
 require 'vcr'
 
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -16,6 +17,14 @@ RSpec.configure do |config|
     #   # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
+
+  VCR.configure do |config|
+    config.cassette_library_dir     = 'spec/fixtures'
+    config.hook_into                  :faraday
+    config.hook_into :webmock
+    config.allow_http_connections_when_no_cassette = true
+  end
+
 
   # rspec-mocks config goes here. You can use an alternate test double
   # library (such as bogus or mocha) by changing the `mock_with` option here.
@@ -88,8 +97,4 @@ def fixture(file)
   File.new(fixture_path + '/' + file)
 end
 
-VCR.configure do |config|
-  config.cassette_library_dir     = 'spec/fixtures'
-  config.hook_into                  :faraday
-  config.hook_into :webmock
-end
+
