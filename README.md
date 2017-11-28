@@ -98,7 +98,7 @@ ServiceMonster supports several parameters that can be passed to their API to ch
 * **q:** Search term. Supply this parameter with a value to return results on which this search term matches at least one of the fields.
 * **fields:** Field list. Supply a comma separated list of fields you would like to be returned. See http://developer.servicemonster.net/Documentation.aspx?ID=1 for a list of resources and the available fields for each.
 * **limit:** The number of records to return in the result. Defaults to 10.
-* **page:** The page of data to return in the result. Defaults to the first page of data.
+* **page:** The page of data to return in the result. Defaults to the first page of data. Page count starts from 0
 
 If you wish to filter a resource for a particular value in a field or set of dates use the following three parameters.
 

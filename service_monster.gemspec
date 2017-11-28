@@ -27,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency('faraday')
   spec.add_runtime_dependency('faraday_middleware')
   spec.add_runtime_dependency('activesupport')
+  spec.add_runtime_dependency('vcr')
 end
