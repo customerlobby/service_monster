@@ -2,7 +2,6 @@ require 'spec_helper'
 require 'webmock/rspec'
 
 RSpec.describe ServiceMonster::Client do
-
   it 'should connect using the configured endpoint and api version' do
     client = ServiceMonster::Client.new
     endpoint = URI.parse("#{client.endpoint}#{client.api_version}/")
@@ -18,9 +17,13 @@ RSpec.describe ServiceMonster::Client do
   it 'check authorization error' do
     VCR.use_cassette('authorization_error') do
       client = ServiceMonster.client(api_key: 'API_KEY')
-      expect {client.accounts {raise} }.to raise_error('Invalid credentials.')
+      expect { client.accounts { raise } }.to raise_error('Invalid credentials.')
     end
   end
+
+  it 'should raise connection error when response code is  504' do
+    stub_get('accounts').to_return(body: 'abc', status: 504)
+    client = ServiceMonster::Client.new
+    expect { client.accounts }.to raise_error(ServiceMonster::Error::ConnectionError)
+  end
 end
-
-
