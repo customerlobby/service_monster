@@ -34,11 +34,14 @@ module ServiceMonster
         # handle connection related failures and raise gem specific standard error
         raise ServiceMonster::Error::ConnectionError.new, 'Connection failed.'
       end
+
       # check if the status code is 401
       if response.status == 200
         Response.create(response.body)
       elsif response.status == 401
         raise ServiceMonster::Error::AuthorizationError.new, 'Invalid credentials.'
+      elsif response.status == 500 && response.body.exceptionMessage.present? && response.body.exceptionMessage =~ /Sequence contains no elements/
+        Response.create_empty
       elsif response.status == 504
         raise ServiceMonster::Error::ConnectionError.new, 'Connection failed.'
       else
