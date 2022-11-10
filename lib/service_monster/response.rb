@@ -8,6 +8,8 @@ module ServiceMonster
              rescue StandardError
                response_hash
              end
+
+      data ||= response_hash
       data.extend(self)
       data
     end
